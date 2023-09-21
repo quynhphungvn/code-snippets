@@ -1,0 +1,21 @@
+@startuml
+entity "SnippetGroup" as sg {
+* id int
+--
+* name varchar(50)
+}
+entity "FrontendSnippet" as fs{
+* id int
+--
+* name varchar(50)
+* description tinytext
+* html_content text
+* css_content text
+* js_content text
+* comment text
+* snippet_group_id int
+} 
+
+sg ||..o{ fs
+
+@enduml
