@@ -42,9 +42,13 @@ function deleteGroup(btnEl) {
     }
 }
 function showModalUpdateSnippetInfo(btnEl) {
-    $('.ui.modal.edit-ui input[type="hidden"][name="id"]').val(btnEl.dataset.id)
-    $('.ui.modal.edit-ui input[name="name"]').val(btnEl.dataset.snippetName);
-    $('.ui.modal.edit-ui textarea').val(btnEl.dataset.snippetDescription);
+    let feCodeId = btnEl.dataset.id;
+    let uiInfoEl = document.querySelector(".uiinfo[data-id='" + feCodeId +"']");
+    let nameEl = uiInfoEl.querySelector("h3.name");
+    let descriptionEl = uiInfoEl.querySelector("p.description");
+    $('.ui.modal.edit-ui input[type="hidden"][name="id"]').val(feCodeId);
+    $('.ui.modal.edit-ui input[name="name"]').val(nameEl.textContent);
+    $('.ui.modal.edit-ui textarea').val(descriptionEl.textContent);
     $('.ui.modal.edit-ui').modal('show');
 }
 function deleteFrontendCodeSnippet(btnEl) {

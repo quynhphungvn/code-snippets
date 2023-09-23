@@ -1,8 +1,10 @@
+<%@page import="java.nio.charset.StandardCharsets"%>
 <%@page import="quynh.java.webapp.codesnippet.model.FrontendCode"%>
 <%@page import="java.awt.JobAttributes.DefaultSelectionType"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List,
+                java.net.URLEncoder,
                 quynh.java.webapp.codesnippet.model.CodeGroup,
                 quynh.java.webapp.codesnippet.model.TechSubject" %>
 <!DOCTYPE html>
@@ -130,7 +132,7 @@
             <%
             if (frontendCodes != null) {
                 for (FrontendCode feCode : frontendCodes) {
-                    out.print("<div class=\"uiinfo\">"
+                    out.print("<div data-id=\"" + feCode.getId() +  "\" class=\"uiinfo\">"
                               + "<div class=\"uiinfo__example\">"
 	                                  + "<div class=\"test-code\">"
 	                                  + "#unset"
@@ -139,16 +141,14 @@
 		                      + "<div class=\"uiinfo__description d-flex flex-column\">");
                     
                     out.print(" <header>"
-                           + "<h3 class=\"fw-bold bg-white p-2 rounded\"> " + feCode.getName() + "</h3>"
+                           + "<h3 class=\"name fw-bold bg-white p-2 rounded\"> " + feCode.getName() + "</h3>"
                            + "</header>");
                     out.print("<main class=\"flex-grow-1\">"
-                            + "<p class=\"p-2\">"+ feCode.getDescription() +"</p>"
+                            + "<p class=\"description p-2\">"+ feCode.getDescription() +"</p>"
                             + "</main>");
                     out.print("<footer class=\"d-flex justify-content-end\">"
                             + "<button class=\"ui icon button me-1\"" 
-                            + "data-id=\"" + feCode.getId() + "\"" 
-                            + "data-snippet-name=\"" + feCode.getName() +"\""
-                            + "data-snippet-description=\"" + feCode.getDescription() + "\""
+                            + "data-id=\"" + feCode.getId() + "\""                            
                             + "onclick=\"showModalUpdateSnippetInfo(this)\">"
                             + "<i class=\"edit icon\"></i>"
                             + "</button>"
