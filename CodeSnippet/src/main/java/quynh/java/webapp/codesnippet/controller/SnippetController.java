@@ -53,15 +53,15 @@ public class SnippetController extends HttpServlet {
 	private void prepareFoward(HttpServletRequest request) {
 		System.out.println("Prepare forward");
 		int cid = getParameterId(request, "cid");
-		if (cid != -1) {
+		if (cid != 0) {
 			prepareWhenCidAvailable(request, cid);
 		} else {
 			int gId = getParameterId(request, "gid");
-			if (gId != -1)
+			if (gId != 0)
 				prepareWhenGidAvailable(request, gId);
 			else {
 				int tId = getParameterId(request, "tid");
-				if (tId != -1) {
+				if (tId != 0) {
 					prepareWhenTidAvailable(request, tId);
 				} else {
 					prepareWhenAllParamIdUnavailable(request);
@@ -80,11 +80,11 @@ public class SnippetController extends HttpServlet {
 		CodeSnippet	codeSnippet = codeSnippetService.getById(cId);
 		if (codeSnippet == null) {
 			int gId = getParameterId(request, "gid");
-			if (gId != -1)
+			if (gId != 0)
 				prepareWhenGidAvailable(request, gId);
 			else {
 				int tId = getParameterId(request, "tid");
-				if (tId != -1) {
+				if (tId != 0) {
 					prepareWhenTidAvailable(request, tId);
 				} else {
 					prepareWhenAllParamIdUnavailable(request);
@@ -115,7 +115,7 @@ public class SnippetController extends HttpServlet {
 			setValueAttribute(request, technology, technologies, codeGroup, codeGroups, codeSnippet, codeSnippets);	
 		} else {
 			int tId = getParameterId(request, "tid");
-			if (tId != -1)
+			if (tId != 0)
 				prepareWhenTidAvailable(request, tId);
 			else {
 				prepareWhenAllParamIdUnavailable(request);
@@ -187,7 +187,7 @@ public class SnippetController extends HttpServlet {
         if (groupName == null || groupName.isBlank())
             processInvalidParamAdd();
         else {
-        	if (tId != -1)
+        	if (tId != 0)
         	{
 	            codeGroupService.add(groupName, tId);
 	            try {
@@ -213,7 +213,7 @@ public class SnippetController extends HttpServlet {
 		int tId = getParameterId(request, "tid");
 		int gId = getParameterId(request, "gid");	
 
-		if (gId != -1)
+		if (gId != 0)
 			codeGroupService.delete(gId);
 		try {
 			response.sendRedirect("/CodeSnippet/view/code?tid=" + tId);
@@ -229,7 +229,7 @@ public class SnippetController extends HttpServlet {
 		int gId = getParameterId(request, "gid");
 		int cId = getParameterId(request, "cid");
 		String groupNewName = request.getParameter("new-name");
-		if (gId == -1)
+		if (gId == 0)
 			try {
 				response.sendRedirect("/CodeSnippet/view/code?tid=" + tId);
 			} catch (IOException e1) {
@@ -253,7 +253,7 @@ public class SnippetController extends HttpServlet {
 		int cId = getParameterId(request, "cid");
 		String name = request.getParameter("name");
 		String content = request.getParameter("content");
-		if (gId == -1 || name == null || name.isBlank())
+		if (gId == 0 || name == null || name.isBlank())
 			processInvalidParamAdd();
 		else {
 			codeSnippetService.add(name, content, gId);			
@@ -270,7 +270,7 @@ public class SnippetController extends HttpServlet {
     	int tId = getParameterId(request, "tid");
 		int gId = getParameterId(request, "gid");
 		int cId = getParameterId(request, "cid");
-        if (cId != -1) {
+        if (cId != 0) {
             codeSnippetService.delete(cId);       
         }  
         try {
@@ -286,7 +286,7 @@ public class SnippetController extends HttpServlet {
 		int gId = getParameterId(request, "gid");
 		int cId = getParameterId(request, "cid");
 		String newName = request.getParameter("new-name");
-		if (cId == -1 || newName.isBlank())
+		if (cId == 0 || newName.isBlank())
 		{}
 		else 
 			codeSnippetService.updateName(cId, newName);
@@ -306,7 +306,7 @@ public class SnippetController extends HttpServlet {
 		String syntax = request.getParameter("syntax");
 		String relevantInfo = request.getParameter("relevant-info");
 		String comment = request.getParameter("comment");
-		if (cId != -1) {
+		if (cId != 0) {
 			codeSnippetService.updateContent(cId, content, syntax, relevantInfo, comment);
 		}
 		try {
