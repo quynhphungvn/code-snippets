@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Snippet</title>
+  <link rel="stylesheet" href="../../libs/semantic-ui/semantic.min.css">
+  <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap-utilities.min.css">
+  <link rel="stylesheet" href="../../libs/common/css/reset.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div id="main-wrapper">
+    <aside class="left-bar border-end">
+      <header class="d-flex align-items-center border-bottom ms-1">
+        <form class="ui form">
+          <div class="field">
+            <select class="ui search dropdown">
+              <option value="">Select Tech</option>
+              <option value="AF">Java</option>
+              <option value="AX">Javascript</option>
+            </select>
+          </div>
+        </form>
+      </header>
+      <main>
+        <section class="groups">
+          <header class="d-flex align-items-center">
+            <h4 class="ui header ms-1">Groups</h4>
+          </header>
+          <main class="pb-2 px-1">
+            <div class="ui vertical menu w-100">
+              <a href="/CodeSnippet?tid=1&gid=1&cid=1" class="item active">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <div class="link item">
+                Javascript Link
+              </div>
+            </div>
+          </main>
+          <footer class="d-flex align-items-center border-bottom">
+            <div class="ui icon bottom left pointing dropdown button p-1 ms-1">
+              <i class="settings icon"></i>
+              <div class="menu">
+                <button class="item w-100" data-tid="1" onclick="showModalAddGroup(this)">
+                  <i class="plus icon"></i>
+                  Add
+                </button>
+                <button class="item w-100" data-gid="1" data-gname="Visit google" onclick="showModalEditGroup(this)">
+                  <i class="edit icon"></i>
+                  Edit
+                </button>
+                <button class="item w-100" data-gid="1" data-gname="Visit google" onclick="deleteGroup(this)">
+                  <i class="trash icon"></i>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </footer>
+          
+        <div class="ui mini modal add-group">
+          <div class="header">
+            Add Group
+          </div>
+          <div class="content">
+            <form method="post" action="/CodeSnippet/group/add" class="ui form" name="add">
+              <input type="hidden" name="tid" value="1">
+              <div class="field">
+                <label>Name</label>
+                <input type="text" name="group-name" placeholder="Group Name">
+              </div>
+              <button class="ui button" type="submit">Add</button>
+            </form>
+          </div>
+        </div>
+        <div class="ui modal edit-group">
+          <div class="header">
+            Edit Group
+          </div>
+          <div class="content">
+            <form method="post" action="/CodeSnippet/group/update" class="ui form" name="edit">
+              <input type="hidden" value="1">
+              <div class="field">
+                <label>Name</label>
+                <input type="text" name="group-name" placeholder="Snippet Group Name" disabled>
+              </div>
+              <div class="field mb-5">
+                <label>New Name</label>
+                <input type="text" name="group-new-name" placeholder="New Name">
+              </div>
+              <button class="ui button" type="submit">Update</button>
+            </form>
+          </div>
+        </div>
+        </section>
+        <section class="codes">
+          <main class="pb-2 px-1">
+            <div class="ui vertical menu w-100">
+              <a href="https://www.google.com" class="item active">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <a href="https://www.google.com" class="item">
+                Visit Google
+              </a>
+              <div class="link item">
+                Javascript Link
+              </div>
+            </div>
+          </main>
+          <footer class="d-flex align-items-center border-bottom">
+            <div class="ui icon bottom left pointing dropdown button p-1 ms-1">
+              <i class="settings icon"></i>
+              <div class="menu">
+                <button class="item w-100" onclick="showModalAddCodeSnippet()">
+                  <i class="plus icon"></i>
+                  Add
+                </button>
+                <button class="item w-100" onclick="showModalEditCodeSnippet()">
+                  <i class="edit icon"></i>
+                  Edit
+                </button>
+                <button class="item w-100" data-group-id="1" data-group-name="Button" onclick="deleteCodeSnippet(this)">
+                  <i class="trash icon"></i>
+                  Delete
+                </button>
+              </div>
+            </div>
+            <!-- Modal add code -->
+            <div class="ui mini modal add-snippet">
+              <div class="header">
+                Add Snippet
+              </div>
+              <div class="content">
+                <form method="post" action="/" class="ui form" name="add">
+                  <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="group-name" placeholder="Snippet Group Name">
+                  </div>
+                  <button class="ui button" type="submit">Add</button>
+                </form>
+              </div>
+            </div>
+            <!-- Modal edit code -->
+            <div class="ui modal edit-snippet">
+              <div class="header">
+                Edit Snippet Name
+              </div>
+              <div class="content">
+                <form method="post" action="/" class="ui form" name="edit">
+                  <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="group-name" placeholder="Snippet Group Name" disabled>
+                  </div>
+                  <div class="field mb-5">
+                    <label>New Name</label>
+                    <input type="text" name="new-name" placeholder="New Name">
+                  </div>
+                  <button class="ui button" type="submit">Update</button>
+                </form>
+              </div>
+            </div>
+          </footer>
+        </section>
+      </main>
+    </aside>
+    <nav class="d-flex align-items-center shadow">
+      <div class="ui breadcrumb ms-2">
+        <a class="section">Home</a>
+        <div class="divider"> / </div>
+        <a class="section">Java</a>
+        <div class="divider"> / </div>
+        <a class="section">Jsp</a>
+        <div class="divider"> / </div>
+        <div class="active section">Button</div>
+      </div> 
+    </nav>
+    <main class="d-flex perfect-center">
+      <div class="content-wrapper shadow border rounded">
+        <div class="code p-2">
+          <div class="ui form">
+            <div class="field">
+              <div class="p-1 d-flex align-items-center">
+                <label class="fw-bold me-2">Code</label>
+                <button class="ui button icon p-1" type="button" onclick="copyCodeToClipboard()">
+                  <i class="copy icon"></i>
+                </button>
+              </div>             
+              <textarea id="code-editor" rows="44" readonly></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="info p-2">
+          <div class="ui form">
+            <div class="field">
+              <div class="p-1">
+                <label>Info</label>
+              </div>             
+              <textarea rows="12" name="info" readonly></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="comment p-2">
+          <div class="ui form">
+            <div class="field">
+              <div class="p-1">
+                <label>Comment</label>
+              </div>             
+              <textarea rows="25" name="comment" readonly></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="control p-2 d-flex align-items-center justify-content-end">
+          <button class="ui icon button d-none js-btn-save" type="button" 
+            onclick="updateCodeSnippet(1)">
+            <i class="save icon"></i>
+          </button>
+          <button class="ui icon button js-btn-edit" type="button" 
+                    onclick="toggleEditableMode()">
+            <i class="edit icon"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../../libs/jquery-3.7.1.min.js"></script>
+  <script src="../../libs/semantic-ui/semantic.min.js"></script>
+  <script src="../../libs/edit_area/edit_area_full.js"></script>
+  <script src="./data-sample.js"></script>
+  <script src="./editor-function.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
