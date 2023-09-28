@@ -29,8 +29,8 @@ public class CodeGroup {
     @Column(name = "item_count")
     private int itemCount;
     @ManyToOne
-    @JoinColumn(name = "tech_subject_id")
-    private TechSubject techSubject;
+    @JoinColumn(name = "technology_id")
+    private Technology technology;
     @OneToMany(mappedBy = "codeGroup", cascade = CascadeType.REMOVE)
-    private List<FrontendCode> frontendCodes;
+    private List<CodeSnippet> codeSnippets;
 }

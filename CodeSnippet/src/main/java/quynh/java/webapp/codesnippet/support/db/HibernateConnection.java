@@ -1,6 +1,5 @@
 package quynh.java.webapp.codesnippet.support.db;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -10,9 +9,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import quynh.java.webapp.codesnippet.model.FrontendCode;
 import quynh.java.webapp.codesnippet.model.CodeGroup;
-import quynh.java.webapp.codesnippet.model.TechSubject;
+import quynh.java.webapp.codesnippet.model.CodeSnippet;
+import quynh.java.webapp.codesnippet.model.Technology;
 
 public class HibernateConnection {
     private final static SessionFactory FACTORY;
@@ -26,17 +25,17 @@ public class HibernateConnection {
 
             e.printStackTrace();
         }
-        conf.setProperty(Environment.DIALECT, props.getProperty("DIALECT"));
-        conf.setProperty(Environment.DRIVER, props.getProperty("DRIVER"));
-        conf.setProperty(Environment.URL, props.getProperty("URL"));
-        conf.setProperty(Environment.USER, props.getProperty("USER"));
-        conf.setProperty(Environment.PASS, props.getProperty("PASSWORD"));
+        conf.setProperty(Environment.DIALECT, props.getProperty("dialect"));
+        conf.setProperty(Environment.DRIVER, props.getProperty("driver"));
+        conf.setProperty(Environment.URL, props.getProperty("url"));
+        conf.setProperty(Environment.USER, props.getProperty("user"));
+        conf.setProperty(Environment.PASS, props.getProperty("password"));
         conf.setProperty(Environment.SHOW_SQL, "true");
 
-        // knowledge
-        conf.addAnnotatedClass(FrontendCode.class);
-        conf.addAnnotatedClass(TechSubject.class);
+        //Entity
+        conf.addAnnotatedClass(Technology.class);
         conf.addAnnotatedClass(CodeGroup.class);
+        conf.addAnnotatedClass(CodeSnippet.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);
     }
