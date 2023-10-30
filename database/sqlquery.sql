@@ -4,10 +4,12 @@ use code_snippet;
 
 create table if not exists technology (
 	id int not null auto_increment,
-    name nvarchar(50) not null,
+    name nvarchar(50) not null unique,
     primary key (id)
 );
-insert into technology (name) values ("java"), ("javascript"), ("sql"), ("frontend"), ("c"), ("assembly");
+insert into technology (name) values ("Java"), ("Javascript"), ("SQL"), 
+									("HTML&CSS"), ("C"), ("Assembly"), ("Practical"),
+                                    ("Spring framework"), ("Hibernate framework"), ("Tools");
 
 create table if not exists code_group (
 	id int not null auto_increment,
